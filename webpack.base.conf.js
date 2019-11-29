@@ -1,5 +1,6 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader')
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
@@ -19,10 +20,17 @@ module.exports = {
             loader: 'vue-loader'
         }, {
             test: /\.js$/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+                plugins: [
+                    "@babel/plugin-syntax-dynamic-import"
+                ]
+            }
         }]
     },
     plugins: [
         new VueLoaderPlugin(),
-      ]
+        new FriendlyErrorsWebpackPlugin()
+    ],
+    stats: 'errors-only'
 };

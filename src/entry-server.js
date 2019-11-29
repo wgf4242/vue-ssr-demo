@@ -1,18 +1,4 @@
-// // entry-server.js
-// import createApp from './app';
-
-// export default context => {
-//   return new Promise((resolve, reject) => {
-//     const { app, router } = createApp();
-//     // 设置服务器端 router 的位置
-//     router.push(context.url)
-//     router.onReady(() => {
-//         resolve(app);
-//     }, reject);
-//   });
-// };
-// entry-server.js
-import createApp from './app';
+import {createApp} from './app';
 
 export default context => {
   return new Promise((resolve, reject) => {

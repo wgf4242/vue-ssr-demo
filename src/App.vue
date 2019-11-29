@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <p>Home Page</p>
         <nav>
             <router-link to="/">首页</router-link>
@@ -9,10 +9,3 @@
         <router-view></router-view>
     </div>
 </template>
-<script>
-    export default {
-        components:{
-        
-        }
-    }
-</script>
