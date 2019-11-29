@@ -1,14 +1,20 @@
-import vueRouter from "vue-router";
-import Vue from "vue";
-import HelloWorld from "@/components/HelloWorld";
-// import About from "@/components/About";
+import Vue from 'vue';
+import Router from 'vue-router';
+import Foo from '@/components/Foo.vue';
+import Bar from '@/components/Bar.vue';
+import Index from '@/components/Index.vue';
 
-Vue.use(vueRouter);
-export default () => {
-  return new vueRouter({
-    mode:"history",
-    routes:[
-       { path:"/", component:HelloWorld, name:"HelloWorld" }, { path:"/about", component:About, name:"About" } 
-      ]
-  })
+Vue.use(Router);
+
+export default function createRouter() {
+    return new Router({
+        mode: 'history',
+        routes: [
+            // {path: '/', component: () => import('./components/Index.vue') },
+            { path: '/', component: Index},
+            // { path: '/', name: 'homepage', component: () => import('../components/Index.vue') //lazy loading },
+            {path: '/foo', component: Foo },
+            {path: '/bar', component: Bar }
+        ]
+    });
 }
