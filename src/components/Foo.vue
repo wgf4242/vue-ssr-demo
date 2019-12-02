@@ -1,11 +1,40 @@
 <template>
-    <div class='foo'>
-        <h1>Foo</h1>
-        <p>Component </p>
-    </div>
+  <div>
+      <p>
+          <button @click="add()">Add</button>
+      </p>
+      <p>{{ fooCount }}</p>
+      
+
+  </div>
 </template>
-<style>
-    /* .foo{
-        background: yellow;
-    } */
-</style>
+
+<script>
+// 在这里导入模块，而不是在 `store/index.js` 中
+import fooStoreModule from '@/store/modules/foo'
+
+export default {
+  asyncData ({ store }) {
+    store.registerModule('foo', fooStoreModule)
+    return store.dispatch('foo/inc')
+  },
+
+  // 重要信息：当多次访问路由时，
+  // 避免在客户端重复注册模块。
+  destroyed () {
+    this.$store.unregisterModule('foo')
+  },
+
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  },
+  methods: {
+    add: function() {
+        console.log('clicked', this.$store.state.foo.count );
+        return this.$store.dispatch('inc')
+    }
+  }
+}
+</script>
